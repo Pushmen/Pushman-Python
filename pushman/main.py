@@ -20,7 +20,7 @@ class Pushman(object):
         }
 
         for idx, item in enumerate(keywords or [], start=1):
-            tpldata['keyword' + idx] = item
+            tpldata['keyword{0}'.format(idx)] = item
 
         tpldata = fill_signature(tpldata, push_secret)
 
