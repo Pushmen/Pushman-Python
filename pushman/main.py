@@ -10,7 +10,7 @@ from pywe_sign import fill_signature
 
 
 class Pushman(object):
-    def send_tplmsg(self, push_id, push_secret, push_url, first, keywords, remark, color, openid=None, openids=None):
+    def send_tplmsg(self, push_id, push_secret, push_url, first='', keywords=None, remark='', color='', openid=None, openids=None):
         tpldata = {
             'push_id': push_id,
             'first': first,
@@ -19,7 +19,7 @@ class Pushman(object):
             'openids': json.dumps([openid] if openid else (openids or [])),
         }
 
-        for idx, item in enumerate(keywords, start=1):
+        for idx, item in enumerate(keywords or [], start=1):
             tpldata['keyword' + idx] = item
 
         tpldata = fill_signature(tpldata, push_secret)
